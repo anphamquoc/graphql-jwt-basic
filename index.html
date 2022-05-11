@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p id="front">hindsight</p>
+    <script>
+      //function replace word in position
+      function replaceWord(str, pos, word) {
+        return str.substr(0, pos) + word + str.substr(pos + 1);
+      }
+      let front = document.getElementById("front");
+      //replace all character in the middle of each word with _  and display the result
+      let eachWord = front.innerHTML.split(" ");
+      let newWord = [];
+      console.log(eachWord);
+      eachWord.map((w) => {
+        let copyWord = w;
+        copyWord = copyWord.toLowerCase();
+        const pos = copyWord.length > 8 ? 2 : 1;
+        for (
+          let i = copyWord.length <= 2 ? 1 : pos + 1;
+          i <= (w.length <= 3 ? w.length : w.length - 1);
+          i++
+        ) {
+          copyWord = replaceWord(copyWord, i, "_ ");
+        }
+        newWord.push(copyWord);
+      });
+      front.innerHTML = newWord.join(" ");
+    </script>
+  </body>
+</html>
